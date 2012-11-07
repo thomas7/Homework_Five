@@ -10,6 +10,8 @@ driver.cpp: scanner.hpp driver.hpp
 
 scanner.hpp: parser.tab.hpp
 
+#no need to make parser.tab.hpp a dependency for parser.tab.cpp since scanner.hpp
+#covers will cover the change
 parser.tab.cpp: expression.hpp scanner.hpp driver.hpp
 
 parser.tab.hpp parser.tab.cpp: parser.ypp
@@ -35,7 +37,6 @@ parser.tab.o: parser.tab.cpp parser.tab.hpp expression.hpp scanner.hpp driver.hp
 
 clean:
 	rm -f *.o *~ core tmp
-	rm -f *.d *~ core tmp
 	rm -f *.hh *~core tmp
 	rm -f *.gch *~core tmp
 	rm -f parser.tab.cpp
