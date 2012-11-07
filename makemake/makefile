@@ -10,14 +10,10 @@ driver.cpp: scanner.hpp driver.hpp
 
 scanner.hpp: parser.tab.hpp
 
-#no need to make parser.tab.hpp a dependency for parser.tab.cpp since scanner.hpp
-#covers any change
-parser.tab.cpp: expression.hpp scanner.hpp driver.hpp
-
 parser.tab.hpp parser.tab.cpp: parser.ypp
 	bison parser.ypp
 
-scanner.cpp: scanner.ll scanner.hpp
+scanner.cpp: scanner.ll
 	flex -t scanner.ll > scanner.cpp
 
 exprtest: ${OBJS}
@@ -26,7 +22,7 @@ exprtest: ${OBJS}
 exprtest.o: exprtest.cpp
 	${CC} ${CFLAGS} -c $<
 
-driver.o: driver.cpp scanner.hpp driver.hpp
+driver.o: driver.cpp scanner.hpp driver.hpp parser.tab.hpp
 	${CC} ${CFLAGS} -c $<
 
 scanner.o: scanner.cpp parser.tab.hpp scanner.hpp
