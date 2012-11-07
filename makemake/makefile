@@ -6,10 +6,6 @@ OBJS = exprtest.o driver.o parser.tab.o scanner.o
 
 all: exprtest
 
-driver.cpp: scanner.hpp driver.hpp
-
-scanner.hpp: parser.tab.hpp
-
 parser.tab.hpp parser.tab.cpp: parser.ypp
 	bison parser.ypp
 
