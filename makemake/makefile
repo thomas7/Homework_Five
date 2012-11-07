@@ -11,7 +11,7 @@ driver.cpp: scanner.hpp driver.hpp
 scanner.hpp: parser.tab.hpp
 
 #no need to make parser.tab.hpp a dependency for parser.tab.cpp since scanner.hpp
-#covers will cover the change
+#covers any change
 parser.tab.cpp: expression.hpp scanner.hpp driver.hpp
 
 parser.tab.hpp parser.tab.cpp: parser.ypp
